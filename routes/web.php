@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('/', 'CalcController@home');
-Route::post('/calc', 'CalcController@calc');
+Route::get('/', function () {
+    return view('welcome');
+});
