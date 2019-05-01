@@ -10,7 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//use Illuminate\Support\Facades\Route;
+//use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('ulogin', 'UloginController@login');
+
+Auth::routes();
+
+Route::get('logout', 'Auth\LoginController@logout');
+
+//Route::get('/home', 'HomeController@index')->name('home');

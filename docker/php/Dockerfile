@@ -2,6 +2,9 @@ FROM php:7.2-fpm
 
 # Copy composer.lock and composer.json
 #COPY composer.lock composer.json /var/www/
+# Download and install NodeJS
+#ADD install-node.sh /usr/sbin/install-node.sh
+#RUN /usr/sbin/install-node.sh
 
 # Set working directory
 WORKDIR /var/www

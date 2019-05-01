@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile
+      dockerfile: docker/php/Dockerfile
     image: digitalocean.com/php
     container_name: app
     restart: unless-stopped
@@ -18,7 +18,6 @@ services:
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
-
   #Nginx Service
   webserver:
     image: nginx:alpine
@@ -33,26 +32,34 @@ services:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
-
   #MySQL Service
-  db:
+  database:
     image: mysql:5.7.22
-    container_name: db
+    container_name: database
     restart: unless-stopped
     tty: true
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: 123
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      - "MYSQL_DATABASE=laravel"
+      - "MYSQL_USER=laravel"
+      - "MYSQL_PASSWORD=123"
+      - "MYSQL_ROOT_PASSWORD=123"
     volumes:
       - dbdata:/var/lib/mysql/
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
-
+  #node
+  nodejs:
+    image: vcarreira/node
+    container_name: nodejs
+    image: tarampampam/node:10.10-alpine
+    restart: on-failure
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
 #Docker Networks
 networks:
   app-network:
