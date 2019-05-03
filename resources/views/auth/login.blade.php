@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(Auth::check())
-        <a href="/logout">logout</a>
-    @else
-        test2<a href="/logout">logout</a>
-    @endif
     <div class="container">
         <div class="row justify-content-center">
             @include('auth.social')

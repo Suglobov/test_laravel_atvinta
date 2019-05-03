@@ -7,7 +7,7 @@
             <div class="uk-margin">
                 <label class="uk-form-label" for="inputHeader">Заголовок</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input" id="inputHeader" type="text" name="header">
+                    <input class="uk-input" id="inputHeader" type="text" name="header" maxlength="255">
                 </div>
             </div>
             <div class="uk-margin">
@@ -15,10 +15,10 @@
                 <div class="uk-form-controls">
                     <select class="uk-select" id="selectTime" name="time">
                         <option value="10min">10мин</option>
-                        <option value="hour">1час</option>
-                        <option value="3hours">3часа</option>
-                        <option value="day">1день</option>
-                        <option value="month">1месяц</option>
+                        <option value="1hour">1час</option>
+                        <option value="3hour">3часа</option>
+                        <option value="1day">1день</option>
+                        <option value="1month">1месяц</option>
                         <option value="nolimit">без ограничения</option>
                     </select>
                 </div>
@@ -34,9 +34,9 @@
                 </div>
             </div>
             <div class="uk-margin">
-                <div class="uk-form-label">Паста</div>
+                <label class="uk-form-label" for="textareaText">Паста</label>
                 <div class="uk-form-controls uk-form-controls-text">
-                    <textarea class="uk-textarea" rows="5"></textarea>
+                    <textarea class="uk-textarea" id="textareaText" rows="5" name="text"></textarea>
                 </div>
             </div>
             <div class="uk-margin">
