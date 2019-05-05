@@ -4001,13 +4001,11 @@
     <column id="908" parent="289" name="access_id">
       <Position>3</Position>
       <DataType>int(10) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="909" parent="289" name="time_of_del">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="910" parent="289" name="title">
@@ -4059,12 +4057,14 @@
       <RefSchemaName>laravel</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="920" parent="289" name="pasta_datas_access_id_foreign">
       <ColNames>access_id</ColNames>
       <RefSchemaName>laravel</RefSchemaName>
       <RefTableName>reference_access</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="921" parent="290" name="id">
       <Position>1</Position>

@@ -23,3 +23,7 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::post('createPasta', 'Pasta\PastaController@create');
+
+Route::get('/pasta/{short_link}', function ($short_link) {
+    return $short_link;
+});

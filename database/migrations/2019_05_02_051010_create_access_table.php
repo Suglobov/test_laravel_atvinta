@@ -29,6 +29,7 @@ class CreateAccessTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('pasta_datas');
         Schema::dropIfExists('reference_access');
     }
 }

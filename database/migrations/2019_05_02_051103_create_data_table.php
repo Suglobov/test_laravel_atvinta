@@ -16,14 +16,14 @@ class CreateDataTable extends Migration
         Schema::create('pasta_datas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedInteger('access_id');
-            $table->dateTime('time_of_del');
+            $table->unsignedInteger('access_id')->nullable();
+            $table->dateTime('time_of_del')->nullable();
             $table->string('title');
             $table->text('text');
             $table->string('short_link')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('access_id')->references('id')->on('reference_access');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('access_id')->references('id')->on('reference_access')->onDelete('cascade');
             $table->index('user_id');
             $table->index('access_id');
             $table->index('short_link');

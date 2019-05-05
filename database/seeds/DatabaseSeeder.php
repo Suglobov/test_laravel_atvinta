@@ -37,5 +37,30 @@ class AccessTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ]
         ]);
+        DB::table('pasta_datas')->delete();
+        DB::table('pasta_datas')->insert([
+            [
+                'user_id' => null,
+                'access_id' => 1,
+                'time_of_del' => null,
+                'title' => 'test1',
+                'text' => '1',
+                'short_link' => null,
+            ], [
+                'user_id' => null,
+                'access_id' => 1,
+                'time_of_del' => null,
+                'title' => 'test2',
+                'text' => '1',
+                'short_link' => 'aaaa',
+            ], [
+                'user_id' => null,
+                'access_id' => 1,
+                'time_of_del' => null,
+                'title' => 'test3',
+                'text' => '1',
+                'short_link' => 'bbbb',
+            ]
+        ]);
     }
 }
