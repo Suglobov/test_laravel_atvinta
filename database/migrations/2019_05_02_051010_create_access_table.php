@@ -16,7 +16,9 @@ class CreateAccessTable extends Migration
         Schema::create('reference_access', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
+            $table->string('comment');
             $table->timestamps();
+            $table->index('name');
         });
     }
 

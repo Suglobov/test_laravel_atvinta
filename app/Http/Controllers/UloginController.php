@@ -42,18 +42,17 @@ class UloginController extends Controller
         }
         // Make registration new user.
         else {
-
             // Create new user in DB.
             $newUser = User::create([
-                'nik' => $user['nickname'],
+//                'nik' => $user['nickname'],
                 'name' => $user['first_name'] . ' ' . $user['last_name'],
-                'avatar' => $user['photo'],
-                'country' => $user['country'],
+//                'avatar' => $user['photo'],
+//                'country' => $user['country'],
                 'email' => $user['email'],
                 'password' => Hash::make(str_random(8)),
-                'role' => 'user',
-                'status' => TRUE,
-                'ip' => $request->ip()
+//                'role' => 'user',
+//                'status' => TRUE,
+//                'ip' => $request->ip()
             ]);
 
             // Make login user.

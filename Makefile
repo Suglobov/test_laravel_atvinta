@@ -14,6 +14,8 @@ dc-composer-install:
 	docker-compose exec app bash -c "composer install"
 dc-migrate:
 	docker-compose exec app bash -c "php artisan migrate"
+dc-migrate-refresh-seed:
+	docker-compose exec app bash -c "php artisan migrate:refresh --seed"
 dc-seeding:
 	docker-compose exec app bash -c "php artisan db:seed"
 dc-tinker:

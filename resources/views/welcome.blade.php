@@ -3,11 +3,21 @@
 @section('content')
     <div class="uk-container">
         <h1>Сохрани кусок текста (с заголовком)</h1>
-        <form class="uk-form-horizontal uk-margin-large" method="post" action="">
+        @if ($errors->any())
+            <div class="uk-margin uk-alert-warning" uk-alert>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form class="uk-form-horizontal uk-margin-large" method="post" action="/createPasta">
+            @csrf
             <div class="uk-margin">
-                <label class="uk-form-label" for="inputHeader">Заголовок</label>
+                <label class="uk-form-label" for="inputTitle">Заголовок</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input" id="inputHeader" type="text" name="header" maxlength="255">
+                    <input class="uk-input" id="inputTitle" type="text" name="title">
                 </div>
             </div>
             <div class="uk-margin">

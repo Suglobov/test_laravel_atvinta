@@ -13,19 +13,20 @@ class CreateDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('data', function (Blueprint $table) {
+        Schema::create('pasta_datas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedInteger('time_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedInteger('access_id');
             $table->dateTime('time_of_del');
+            $table->string('title');
+            $table->text('text');
+            $table->string('short_link')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('time_id')->references('id')->on('reference_time');
             $table->foreign('access_id')->references('id')->on('reference_access');
             $table->index('user_id');
-            $table->index('time_id');
             $table->index('access_id');
+            $table->index('short_link');
         });
     }
 
