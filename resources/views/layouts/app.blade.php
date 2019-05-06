@@ -69,7 +69,7 @@
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
-                                    @csrf
+                                    @csrfmessage
                                 </form>
                             </div>
                         </li>
@@ -80,6 +80,11 @@
     </nav>
     <main class="uk-grid-small" uk-grid>
         <div class="uk-width-2-3">
+            <div class="uk-container uk-margin">
+                @if(\Session::has('message'))
+                    {{\Session::get('message')}}
+                @endif
+            </div>
             @yield('content')
         </div>
         <div class="uk-width-expand">

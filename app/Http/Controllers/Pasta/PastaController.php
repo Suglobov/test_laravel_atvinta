@@ -62,6 +62,8 @@ class PastaController extends Controller
         $tmpPastaData->short_link = $hashids->encode($id);
         $tmpPastaData->save();
 
+        \Session::flash('message', "/pasta/$tmpPastaData->short_link");
+
         return Redirect::back();
     }
 
@@ -83,11 +85,9 @@ class PastaController extends Controller
 
         if ($rows->count() === 0) {
             abort(404);
-            return;
         }
         $row = $rows->first();
         $access = $row->name;
-//        echo '<pre>', print_r([$row, $user_id, $access], 1), '</pre>';
 
         if ($access === 'private') {
             if (!(
@@ -95,7 +95,6 @@ class PastaController extends Controller
                 && (int)$row->user_id === (int)$user_id
             )) {
                 abort(404);
-                return;
             }
         }
 //        echo '<pre>', print_r($row, 1), '</pre>';
