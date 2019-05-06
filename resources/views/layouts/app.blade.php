@@ -83,9 +83,14 @@
             @yield('content')
         </div>
         <div class="uk-width-expand">
-            @include('pasta.publicList')
+            <div class="uk-margin">
+                @include('pasta.publicList')
+            </div>
         </div>
     </main>
+    <div class="uk-container uk-margin">
+        @include('pasta.privateList')
+    </div>
 </div>
 </body>
 </html>

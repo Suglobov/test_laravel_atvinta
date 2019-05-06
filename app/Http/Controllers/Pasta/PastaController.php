@@ -64,4 +64,9 @@ class PastaController extends Controller
 
         return Redirect::back();
     }
+
+    public function curent($short_link)
+    {
+        echo '<pre>', print_r($short_link, 1), '</pre>';
+    }
 }
