@@ -67,6 +67,38 @@ class PastaController extends Controller
 
     public function curent($short_link)
     {
-        echo '<pre>', print_r($short_link, 1), '</pre>';
+        $user_id = Auth::user() ? Auth::user()->getAuthIdentifier() : null;
+
+        $rows = DB::table('pasta_datas AS pd')
+            ->join('reference_access AS ra', 'ra.id', '=', 'pd.access_id')
+            ->where('pd.short_link', '=', $short_link)
+//            ->where('pd.short_link', '=', 'zzz')
+            ->where(function (\Illuminate\Database\Query\Builder $query) {
+                $now = Carbon::now();
+                $query
+                    ->where('pd.time_of_del', '>', $now)
+                    ->orWhere('pd.time_of_del');
+            })
+            ->get();
+
+        if ($rows->count() === 0) {
+            abort(404);
+            return;
+        }
+        $row = $rows->first();
+        $access = $row->name;
+//        echo '<pre>', print_r([$row, $user_id, $access], 1), '</pre>';
+
+        if ($access === 'private') {
+            if (!(
+                $user_id !== null
+                && (int)$row->user_id === (int)$user_id
+            )) {
+                abort(404);
+                return;
+            }
+        }
+//        echo '<pre>', print_r($row, 1), '</pre>';
+        return view('pasta.curent', ['row' => $row]);
     }
 }

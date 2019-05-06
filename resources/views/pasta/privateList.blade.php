@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 $user_id = Auth::user() ? Auth::user()->getAuthIdentifier() : null;
 
 $publicList = DB::table('pasta_datas AS pd')
+    ->select([
+        'pd.short_link',
+        'pd.title',
+        'ra.name'
+    ])
     ->join('reference_access AS ra', 'ra.id', '=', 'pd.access_id')
     ->where('pd.user_id', '=', $user_id)
     ->where(function (\Illuminate\Database\Query\Builder $query) {
@@ -24,7 +29,7 @@ $publicList = DB::table('pasta_datas AS pd')
     <p>личные</p>
     @foreach ($publicList as $p)
         <p>
-            <a href="/pasta/{{ $p->short_link }}">{{ $p->title }}</a>
+            <a href="/pasta/{{ $p->short_link }}">{{ $p->title }} - {{ $p->name }}</a>
         </p>
     @endforeach
     {{ $publicList->links() }}
